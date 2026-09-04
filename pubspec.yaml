@@ -1,0 +1,68 @@
+name: jemiran
+description: "A local-first, bring-your-own-key AI coding agent for Windows."
+publish_to: 'none'
+
+version: 1.3.1+11
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^3.3.1
+  path: ^1.9.1
+  intl: ^0.20.2
+  file_picker: ^10.3.8
+  markdown_widget: ^2.3.2+8
+  flutter_math_fork: ^0.7.4
+  flutter_markdown_plus_latex: ^1.0.5
+  flutter_highlight: ^0.7.0
+  markdown: ^7.3.1
+  flutter_markdown_plus: ^1.0.12
+  shamsi_date: ^1.1.1
+  http: ^1.6.0
+  shared_preferences: ^2.5.5
+  package_info_plus: ^9.0.1
+  cached_network_image: ^3.4.1
+  flutter_image_compress: ^2.4.0
+  record: ^6.2.1
+  web: ^1.1.1
+  window_manager: ^0.4.3
+  tray_manager: ^0.5.2
+  local_notifier: ^0.1.6
+  archive: ^4.0.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: false
+  ios: false
+  image_path: "assets/images/launcher_icon/icon.png"
+  windows:
+    generate: true
+    image_path: "assets/images/launcher_icon/icon.png"
+  web:
+    generate: false
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/ai_icons/
+    - assets/images/splash/
+    - assets/images/launcher_icon/
+    - assets/images/presets/
+    - assets/tray/
+    
+  # Vazir 16.1.0 remains as the only bundled font. Its embedded metadata and
+  # THIRD_PARTY_NOTICES.md document the applicable upstream licenses.
+  fonts:
+    - family: vazir
+      fonts:
+        - asset: assets/fonts/Vazir.ttf
