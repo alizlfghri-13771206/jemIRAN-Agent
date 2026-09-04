@@ -28,7 +28,7 @@ dependencies:
   flutter_image_compress: ^2.4.0
   record: ^6.2.1
   web: ^1.1.1
-  window_manager: ^0.4.3
+  window_manager: ^0.5.2
   tray_manager: ^0.5.2
   local_notifier: ^0.1.6
   archive: ^4.0.9
