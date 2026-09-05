@@ -280,25 +280,10 @@ class _DesktopComposerState extends State<DesktopComposer> {
                       onTap: widget.onManageResources,
                     ),
                     const Spacer(),
-                    Text(
-                      widget.isLoading ? 'Esc برای توقف' : 'Enter برای ارسال',
-                      style: TextStyle(
-                        fontSize: 10.5,
-                        color: JSurface.muted(isDark),
-                      ),
-                    ),
-                    const SizedBox(width: WinSpace.md),
                     _sendButton(isDark),
                   ],
                 ),
               ],
-            ),
-          ),
-          const SizedBox(height: 6),
-          Center(
-            child: Text(
-              'Shift+Enter خط جدید · Ctrl+N گفت‌وگوی جدید · Ctrl+B نوار کنار',
-              style: TextStyle(fontSize: 10, color: JSurface.muted(isDark)),
             ),
           ),
         ],

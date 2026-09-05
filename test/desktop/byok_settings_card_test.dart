@@ -37,7 +37,7 @@ void main() {
 
   testWidgets('وقتی چیزی ثبت نشده، حالت خالی نشان داده می‌شود', (tester) async {
     await tester.pumpWidget(_host());
-    expect(find.text('ارائه‌دهنده‌های من'), findsOneWidget);
+    expect(find.text('افزودن کلیدهای API'), findsOneWidget);
     expect(find.text('هنوز ارائه‌دهنده‌ای اضافه نکرده‌ای.'), findsOneWidget);
   });
 
@@ -119,7 +119,7 @@ void main() {
     await tester.tap(find.text('افزودن'));
     await tester.pumpAndSettle();
 
-    expect(find.text('افزودن ارائه‌دهنده'), findsOneWidget);
+    expect(find.text('افزودن API-KEY جدید'), findsOneWidget);
 
     await tester.tap(find.text('ذخیره'));
     await tester.pumpAndSettle();

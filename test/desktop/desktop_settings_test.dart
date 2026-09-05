@@ -40,12 +40,12 @@ void main() {
     expect(find.text('jemIRAN.app@gmail.com'), findsOneWidget);
     expect(find.textContaining('ایمیل :'), findsNothing);
     expect(find.byTooltip('کپی ایمیل'), findsOneWidget);
-    expect(find.text('اتصال مخزن‌های توسعه'), findsOneWidget);
+    expect(find.text('مخازن و ریپازیتوری‌ها'), findsOneWidget);
     expect(
       find.text('مخازن و یا ریپوهای مورد استفاده شما تا کنون'),
       findsNothing,
     );
-    expect(find.text('مشاهده مخازن (ریپوها)'), findsOneWidget);
+    expect(find.text('به‌روزرسانی و مشاهده'), findsOneWidget);
     expect(find.text('نسخهٔ مستقل ویندوز برای کار روی پروژه‌ها'), findsNothing);
     expect(find.text('معماری ایجنت، مدل‌ها و حریم خصوصی'), findsNothing);
     expect(find.text('روشن'), findsOneWidget);

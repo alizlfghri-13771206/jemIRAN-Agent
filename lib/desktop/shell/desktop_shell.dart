@@ -36,7 +36,10 @@ class _DesktopShellState extends ConsumerState<DesktopShell> {
   @override
   void initState() {
     super.initState();
-    _bootstrap();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(_bootstrap());
+    });
   }
 
   Future<void> _bootstrap() async {

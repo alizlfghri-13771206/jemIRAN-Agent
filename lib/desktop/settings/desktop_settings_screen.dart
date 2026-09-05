@@ -5,7 +5,6 @@ import 'package:jemiran/desktop/theme/desktop_tokens.dart';
 import 'package:jemiran/desktop/theme/win_controls.dart';
 import 'package:jemiran/desktop/agent/network/agent_environment.dart';
 import 'package:jemiran/desktop/agent/audit/audit_dialog.dart';
-import 'package:jemiran/desktop/app_release.dart';
 import 'package:jemiran/desktop/agent/byok/byok_settings_card.dart';
 import 'package:jemiran/riverpod/theme_notifier.dart';
 import 'package:jemiran/themes/colors.dart';
@@ -84,7 +83,7 @@ class DesktopSettingsScreen extends ConsumerWidget {
                                       _SettingsRow(
                                         isDark: isDark,
                                         icon: Icons.receipt_long_rounded,
-                                        title: 'دفتر فعالیت',
+                                        title: 'تاریخچه فعالیت',
                                         onTap: () =>
                                             showAuditLogDialog(context),
                                       ),
@@ -92,45 +91,29 @@ class DesktopSettingsScreen extends ConsumerWidget {
                                       _SettingsRow(
                                         isDark: isDark,
                                         icon: Icons.info_outline_rounded,
-                                        title: 'دربارهٔ جمیران ایجنت',
+                                        title:
+                                            'درباره جمیران ایجنت نسخه Open Source',
                                         onTap: () => _showInfo(
                                           context,
-                                          title: 'دربارهٔ جمیران ایجنت',
+                                          title:
+                                              'درباره جمیران ایجنت نسخه Open Source',
                                           icon: Icons.info_outline_rounded,
                                           text:
-                                              'جمیران ایجنت نسخهٔ مستقل ویندوز برای تحلیل، کدنویسی و اجرای کار روی پروژه‌های محلی شماست. پروژه‌ها، تاریخچهٔ کار و فایل‌های وابسته روی دستگاه خودتان نگه‌داری می‌شوند.',
+                                              'جمیران ایجنت پس از ماه‌ها تلاش ساخته و ارائه شده است. این پروژه با الهام از Claude Code و Hermes تلاش می‌کند تجربه‌ای خوب از کار با یک ایجنت ایرانی برای شما فراهم کند.',
                                         ),
                                       ),
                                       const SizedBox(height: WinSpace.sm),
                                       _SettingsRow(
                                         isDark: isDark,
                                         icon: Icons.code_rounded,
-                                        title: 'اطلاعات فنی',
+                                        title: 'اطلاعات فنی نسخه Open Source',
                                         onTap: () => _showInfo(
                                           context,
-                                          title: 'اطلاعات فنی',
+                                          title: 'اطلاعات فنی نسخه Open Source',
                                           icon: Icons.code_rounded,
                                           text:
-                                              'این برنامه سروری ندارد: مدل‌ها از ارائه‌دهنده‌هایی می‌آیند که خودتان کلیدشان را وارد کرده‌اید و درخواست‌ها مستقیم از همین دستگاه می‌روند. دسترسی فایل هم فقط داخل مسیرهایی است که خودتان انتخاب کرده‌اید.',
+                                              'جمیران ایجنت با زبان دارت و فریم‌ورک فلاتر طراحی شده است. برای استفاده از آن، کلید API خود را اضافه کنید تا از هستهٔ ایجنت بهره ببرید. سورس پروژه در اختیار شماست تا ایجنت‌های خودتان را بسازید، کارها را سریع‌تر پیش ببرید و در پیشرفت نرم‌افزار و هوش مصنوعی ایران سهیم باشید.',
                                         ),
-                                      ),
-                                      const SizedBox(height: WinSpace.md),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.tag_rounded,
-                                            size: 16,
-                                            color: JSurface.muted(isDark),
-                                          ),
-                                          const SizedBox(width: WinSpace.sm),
-                                          SelectableText(
-                                            AppRelease.label,
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              color: JSurface.muted(isDark),
-                                            ),
-                                          ),
-                                        ],
                                       ),
                                     ],
                                   ),
@@ -223,7 +206,7 @@ class _RepositoryStatusCardState extends State<_RepositoryStatusCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'اتصال مخزن‌های توسعه',
+                      'مخازن و ریپازیتوری‌ها',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
@@ -233,9 +216,9 @@ class _RepositoryStatusCardState extends State<_RepositoryStatusCard> {
                     const SizedBox(height: 2),
                     Text(
                       status == null
-                          ? 'برای سنجش واقعی اتصال، بررسی را اجرا کنید.'
+                          ? 'برای مشاهدهٔ ریپوهای متصل‌شده کلیک کنید.'
                           : allOk
-                          ? 'همهٔ مخزن‌ها از مسیر مستقل جمیران در دسترس‌اند.'
+                          ? 'همه مخزن‌ها از مسیر مستقل جمیران در دسترس‌اند.'
                           : 'اتصال برخی مقصدها واقعاً ناموفق بود؛ جزئیات زیر را ببینید.',
                       style: TextStyle(
                         fontSize: 11,
@@ -255,7 +238,7 @@ class _RepositoryStatusCardState extends State<_RepositoryStatusCard> {
                       )
                     : const Icon(Icons.refresh_rounded, size: 15),
                 label: Text(
-                  _checking ? 'در حال بررسی' : 'مشاهده مخازن (ریپوها)',
+                  _checking ? 'در حال بررسی' : 'به‌روزرسانی و مشاهده',
                 ),
               ),
             ],
@@ -380,7 +363,7 @@ class _SettingsIntro extends StatelessWidget {
             gradient: JGradient.brand(isDark),
             borderRadius: BorderRadius.circular(22),
           ),
-          child: const Icon(Icons.tune_rounded, color: Colors.white, size: 34),
+          child: const Icon(Icons.settings, color: Colors.white, size: 34),
         ),
         const SizedBox(height: WinSpace.lg),
         Text(
@@ -496,7 +479,7 @@ class _ThemeCard extends StatelessWidget {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
                   ),
                   Text(
-                    'تم مناسب محیط کار خود را انتخاب کنید.',
+                    'تم دلخواهتون رو انتخاب کنید',
                     style: TextStyle(
                       fontSize: 11.5,
                       color: JSurface.muted(isDark),
@@ -609,7 +592,7 @@ class _SettingsRow extends StatelessWidget {
           ),
         ),
         Icon(
-          Icons.chevron_left_rounded,
+          Icons.chevron_right_rounded,
           size: 18,
           color: JSurface.muted(isDark),
         ),

@@ -100,7 +100,7 @@ class _ByokSettingsCardState extends ConsumerState<ByokSettingsCard> {
             children: [
               const Expanded(
                 child: Text(
-                  'ارائه‌دهنده‌های من',
+                  'افزودن کلیدهای API',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
                 ),
               ),
@@ -133,9 +133,9 @@ class _ByokSettingsCardState extends ConsumerState<ByokSettingsCard> {
           ),
           const SizedBox(height: WinSpace.sm),
           Text(
-            'درخواست‌ها مستقیم از همین دستگاه به ارائه‌دهنده‌ای می‌روند که '
-            'خودت انتخاب کرده‌ای. صورتحساب هم مستقیماً بین تو و همان '
-            'ارائه‌دهنده است، و کلید رمزگذاری‌شده روی همین دستگاه می‌ماند.',
+            'با قابلیت BYOK می‌توانید Provider و مدل دلخواهتان را به جمیران '
+            'ایجنت اضافه کنید. درخواست‌ها مستقیم از همین دستگاه به Provider '
+            'انتخابی می‌روند و کلید رمزگذاری‌شده روی دستگاه شما می‌ماند.',
             style: TextStyle(
               height: 1.9,
               fontSize: 12.5,
@@ -435,7 +435,7 @@ class _ByokProviderDialogState extends State<_ByokProviderDialog> {
       textDirection: TextDirection.rtl,
       child: AlertDialog(
         title: Text(
-          widget.existing == null ? 'افزودن ارائه‌دهنده' : 'ویرایش ارائه‌دهنده',
+          widget.existing == null ? 'افزودن API-KEY جدید' : 'ویرایش API-KEY',
         ),
         content: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 460),
@@ -472,7 +472,7 @@ class _ByokProviderDialogState extends State<_ByokProviderDialog> {
                 TextField(
                   controller: _modelId,
                   decoration: const InputDecoration(
-                    labelText: 'شناسهٔ مدل',
+                    labelText: 'شناسه مدل',
                     hintText: 'claude-sonnet-5',
                   ),
                 ),

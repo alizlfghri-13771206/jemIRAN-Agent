@@ -46,7 +46,7 @@ class _AuditDialogState extends State<_AuditDialog> {
     }
     try {
       final path = await FilePicker.platform.saveFile(
-        dialogTitle: 'ذخیرهٔ دفتر فعالیت',
+        dialogTitle: 'ذخیره تاریخچه فعالیت',
         fileName: 'jemiran-audit.jsonl',
       );
       if (path == null) return;
@@ -65,19 +65,18 @@ class _AuditDialogState extends State<_AuditDialog> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: AlertDialog(
-        title: const Text('دفتر فعالیت'),
+        title: const Text('تاریخچه فعالیت'),
         content: SizedBox(
           width: 640,
           height: 460,
           child: Column(
             children: [
               Text(
-                'هرچه ایجنت روی این دستگاه انجام داده — بدون کلید و رمز، '
-                'چون پیش از نوشتن پاک‌سازی می‌شود.',
+                'تمامی لاگ های جمیران ایجنت در دستگاه شما ذخیره می‌شوند',
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 14,
                   height: 1.8,
-                  color: JSurface.muted(isDark),
+                  color: JSurface.text(isDark),
                 ),
               ),
               const SizedBox(height: WinSpace.md),
@@ -89,8 +88,9 @@ class _AuditDialogState extends State<_AuditDialog> {
                       onSubmitted: (_) => _refresh(),
                       decoration: const InputDecoration(
                         isDense: true,
-                        hintText: 'جست‌وجو — مثلاً یک فرمان یا مسیر',
-                        prefixIcon: Icon(Icons.search_rounded, size: 18),
+                        hintStyle: TextStyle(fontSize: 14),
+                        hintText: 'جست‌وجو',
+                        prefixIcon: Icon(Icons.search_rounded, size: 15),
                       ),
                     ),
                   ),
@@ -147,8 +147,11 @@ class _AuditDialogState extends State<_AuditDialog> {
             onPressed: () => Navigator.pop(context),
             child: const Text('بستن'),
           ),
-          TextButton(onPressed: _refresh, child: const Text('تازه‌سازی')),
-          FilledButton(onPressed: _export, child: const Text('خروجی')),
+          TextButton(onPressed: _refresh, child: const Text('بروزرسانی')),
+          FilledButton(
+            onPressed: _export,
+            child: const Text('دریافت خروجی فعالیت‌ها'),
+          ),
         ],
       ),
     );

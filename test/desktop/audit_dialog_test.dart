@@ -46,7 +46,7 @@ void main() {
 
   testWidgets('دفتر خالی پیام روشن می‌دهد', (tester) async {
     await _open(tester);
-    expect(find.text('دفتر فعالیت'), findsOneWidget);
+    expect(find.text('تاریخچه فعالیت'), findsOneWidget);
     expect(find.text('ردیفی پیدا نشد.'), findsOneWidget);
   });
 
@@ -100,7 +100,7 @@ void main() {
 
   testWidgets('خروجیِ دفتر خالی، پنجرهٔ فایل باز نمی‌کند', (tester) async {
     await _open(tester);
-    await tester.tap(find.text('خروجی'));
+    await tester.tap(find.text('دریافت خروجی فعالیت‌ها'));
     await tester.pumpAndSettle();
     expect(find.text('چیزی برای خروجی گرفتن نیست.'), findsOneWidget);
   });
