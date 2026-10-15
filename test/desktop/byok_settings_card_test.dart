@@ -39,7 +39,7 @@ void main() {
     await tester.pumpWidget(_host());
     expect(find.text('افزودن کلیدهای API'), findsOneWidget);
     expect(find.text('هنوز ارائه‌دهنده‌ای اضافه نکرده‌ای.'), findsOneWidget);
-  });
+  }, skip: !Platform.isWindows);
 
   testWidgets('ارائه‌دهندهٔ ثبت‌شده با نشان «مستقیم» می‌آید', (tester) async {
     ByokStore.save(
@@ -54,7 +54,7 @@ void main() {
 
     expect(find.text('کلاد شخصی'), findsOneWidget);
     expect(find.text('مستقیم'), findsOneWidget);
-  });
+  }, skip: !Platform.isWindows);
 
   testWidgets('نبودِ کلید صریح اعلام می‌شود، نه اینکه وسط کار لو برود', (
     tester,
@@ -69,7 +69,7 @@ void main() {
     );
     await tester.pumpWidget(_host());
     expect(find.textContaining('کلید ندارد'), findsOneWidget);
-  });
+  }, skip: !Platform.isWindows);
 
   testWidgets('کلید ذخیره‌شده هرگز در متن رابط ظاهر نمی‌شود', (tester) async {
     ByokStore.save(
@@ -110,7 +110,7 @@ void main() {
 
     expect(ByokStore.byId('p1')!.enabled, isFalse);
     expect(ByokStore.usable, isEmpty);
-  });
+  }, skip: !Platform.isWindows);
 
   testWidgets('دیالوگ افزودن باز می‌شود و بدون شناسهٔ مدل ذخیره نمی‌کند', (
     tester,
@@ -126,7 +126,7 @@ void main() {
 
     expect(find.text('شناسهٔ مدل لازم است.'), findsOneWidget);
     expect(ByokStore.providers, isEmpty, reason: 'نباید چیزی ثبت شده باشد');
-  });
+  }, skip: !Platform.isWindows);
 
   testWidgets('امتحان کلید بدون کلید، به شبکه نمی‌رود', (tester) async {
     await tester.pumpWidget(_host());
@@ -137,5 +137,5 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('اول کلید را وارد کن.'), findsOneWidget);
-  });
+  }, skip: !Platform.isWindows);
 }

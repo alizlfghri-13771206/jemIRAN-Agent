@@ -340,10 +340,34 @@ abstract final class ByokStore {
     return byId(modelKey!.substring(ByokProvider.keyPrefix.length));
   }
 
+  static String _modelCompany(ByokProvider provider) {
+    final prefix = provider.modelId.split('/').first;
+    const companies = {
+      'google': 'Google',
+      'openai': 'OpenAI',
+      'anthropic': 'Anthropic',
+      'deepseek': 'DeepSeek',
+      'x-ai': 'xAI',
+      'nvidia': 'NVIDIA',
+      'meta': 'Meta',
+      'qwen': 'Qwen',
+      'tencent': 'Tencent',
+      'xiaomi': 'Xiaomi',
+      'z-ai': 'Z.ai',
+    };
+    if (provider.kind == ByokProviderKind.gemini) return 'Google';
+    return companies[prefix] ?? provider.kind.label;
+  }
+
   static Map<String, dynamic> modelEntry(ByokProvider provider) => {
     'key': provider.modelKey,
     'label': provider.label.isEmpty ? provider.modelId : provider.label,
-    'company': provider.kind.label,
+    'company': _modelCompany(provider),
+    if (const {
+      'google/gemini-4-argon',
+      'gemini-4-argon',
+    }.contains(provider.modelId.trim()))
+      'icon': 'progemini',
     'agent_model': true,
     'enabled': provider.enabled,
     'locked': false,

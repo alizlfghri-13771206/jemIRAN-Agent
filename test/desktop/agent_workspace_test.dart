@@ -42,7 +42,10 @@ void main() {
     test('فرار با ".." رد می‌شود', () async {
       await AgentWorkspace.addDirectory(allowed.path);
       expect(AgentWorkspace.resolve('../outside/secret.txt'), isNull);
-      expect(AgentWorkspace.resolve('..\\outside\\secret.txt'), isNull);
+      // روی ویندوز «\» جداکنندهٔ مسیر است؛ روی بقیه بخشی از نام فایل.
+      if (Platform.isWindows) {
+        expect(AgentWorkspace.resolve('..\\outside\\secret.txt'), isNull);
+      }
       expect(AgentWorkspace.resolve('subdir/../../outside/secret.txt'), isNull);
     });
 

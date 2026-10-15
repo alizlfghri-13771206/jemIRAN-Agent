@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/legacy.dart';
 import 'package:jemiran/desktop/agent/byok/byok_provider.dart';
 import 'package:jemiran/riverpod/models_provider.dart';
 import 'package:jemiran/ui/screens/chat_room/widgets/model_config.dart';
+import 'package:jemiran/utils/model_release_order.dart';
 
 bool modelRunnable(Map<String, dynamic> model) =>
     model['enabled'] != false && model['key'] is String;
@@ -30,13 +31,16 @@ extension DesktopModelsStateX on ModelsState {
           .add(model);
     }
     for (final list in byCompany.values) {
-      list.sort(
-        (a, b) => (a['label']?.toString() ?? '').compareTo(
-          b['label']?.toString() ?? '',
-        ),
+      orderByModelRelease(
+        list,
+        (model) => ByokStore.byModelKey(model['key'] as String?)?.modelId ?? '',
       );
     }
-    final companies = byCompany.keys.toList()..sort();
+    const preferred = ['Google', 'OpenAI', 'Anthropic'];
+    final companies = [
+      ...preferred.where(byCompany.containsKey),
+      ...byCompany.keys.where((c) => !preferred.contains(c)),
+    ];
     return [
       for (final company in companies)
         (company: company, models: byCompany[company]!),

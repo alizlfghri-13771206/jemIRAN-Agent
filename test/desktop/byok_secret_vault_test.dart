@@ -46,32 +46,24 @@ void main() {
       expect(scanned, greaterThan(0), reason: 'باید دست‌کم یک فایل نوشته شود');
     }, skip: !Platform.isWindows);
 
-    test(
-      'حساب دیگر روی همان ویندوز نمی‌تواند رازِ حساب اول را بخواند',
-      () {
-        SecretVault.write('shared-ref', 'راز-حساب-اول');
-        expect(SecretVault.read('shared-ref'), 'راز-حساب-اول');
+    test('حساب دیگر روی همان ویندوز نمی‌تواند رازِ حساب اول را بخواند', () {
+      SecretVault.write('shared-ref', 'راز-حساب-اول');
+      expect(SecretVault.read('shared-ref'), 'راز-حساب-اول');
 
-        AgentStorage.setAccountScope('user-b@example.com');
-        expect(
-          SecretVault.read('shared-ref'),
-          isNull,
-          reason: 'حساب دوم فضای خودش را دارد و نباید چیزی ببیند',
-        );
-      },
-      skip: !Platform.isWindows,
-    );
+      AgentStorage.setAccountScope('user-b@example.com');
+      expect(
+        SecretVault.read('shared-ref'),
+        isNull,
+        reason: 'حساب دوم فضای خودش را دارد و نباید چیزی ببیند',
+      );
+    }, skip: !Platform.isWindows);
 
-    test(
-      'ciphertext دستکاری‌شده به‌جای پرتاب خطا، null می‌دهد',
-      () {
-        SecretVault.write('openai', 'sk-openai-۱');
-        final file = File('${AgentStorage.root!.path}/byok_secrets.json');
-        file.writeAsStringSync('{"openai":"bm90LXZhbGlkLWNpcGhlcnRleHQ="}');
-        expect(SecretVault.read('openai'), isNull);
-      },
-      skip: !Platform.isWindows,
-    );
+    test('ciphertext دستکاری‌شده به‌جای پرتاب خطا، null می‌دهد', () {
+      SecretVault.write('openai', 'sk-openai-۱');
+      final file = File('${AgentStorage.root!.path}/byok_secrets.json');
+      file.writeAsStringSync('{"openai":"bm90LXZhbGlkLWNpcGhlcnRleHQ="}');
+      expect(SecretVault.read('openai'), isNull);
+    }, skip: !Platform.isWindows);
 
     test('حذف و پاک‌سازی کامل کار می‌کنند', () {
       SecretVault.write('a', 'کلید-الف');
@@ -87,16 +79,12 @@ void main() {
       expect(SecretVault.read('b'), isNull);
     }, skip: !Platform.isWindows);
 
-    test(
-      'روی پلتفرم بدون ذخیره‌سازی امن، به متن ساده عقب‌نشینی نمی‌کند',
-      () {
-        expect(
-          () => SecretVault.write('x', 'راز'),
-          throwsA(isA<UnsupportedError>()),
-        );
-      },
-      skip: Platform.isWindows,
-    );
+    test('روی پلتفرم بدون ذخیره‌سازی امن، به متن ساده عقب‌نشینی نمی‌کند', () {
+      expect(
+        () => SecretVault.write('x', 'راز'),
+        throwsA(isA<UnsupportedError>()),
+      );
+    }, skip: Platform.isWindows);
   });
 }
 

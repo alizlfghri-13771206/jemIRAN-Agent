@@ -32,24 +32,20 @@ void main() {
     } catch (_) {}
   });
 
-  test(
-    'مدل BYOK فقط از پیکربندی محلی در فهرست دیده می‌شود',
-    () {
-      ByokStore.save(_provider(), secret: _secret);
+  test('مدل BYOK فقط از پیکربندی محلی در فهرست دیده می‌شود', () {
+    ByokStore.save(_provider(), secret: _secret);
 
-      final notifier = DesktopModelsNotifier();
-      expect(notifier.state.models, isEmpty);
+    final notifier = DesktopModelsNotifier();
+    expect(notifier.state.models, isEmpty);
 
-      notifier.refreshByokModels();
+    notifier.refreshByokModels();
 
-      expect(
-        notifier.state.models.any((m) => m['byok'] == true),
-        isTrue,
-        reason: 'مدل با کلید شخصی فقط به پیکربندی محلی گره می‌خورد',
-      );
-    },
-    skip: !Platform.isWindows,
-  );
+    expect(
+      notifier.state.models.any((m) => m['byok'] == true),
+      isTrue,
+      reason: 'مدل با کلید شخصی فقط به پیکربندی محلی گره می‌خورد',
+    );
+  }, skip: !Platform.isWindows);
 
   test('تازه‌سازی BYOK وضعیت خطای قبلی را پاک نمی‌کند', () {
     ByokStore.save(_provider(), secret: _secret);
